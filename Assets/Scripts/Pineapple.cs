@@ -9,6 +9,8 @@ public class Pineapple : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             //Add 1 abacaxi no inventário
+            collision.GetComponent<Player>().IncreaseScore();
+            Destroy(gameObject);
         }
     }
 }

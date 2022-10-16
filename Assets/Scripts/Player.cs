@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
+    [Header("Atributos")]
     public float speed;
     public float jumpForce;
     public int life;
+    public int pineapple;
+
+    [Header("Componentes")]
     //Acesso ao RigidBody2d
     public Rigidbody2D rig;
     //Acesso ao Animator
     public Animator anim;
     //Acesso ao SpriteRenderer
     public SpriteRenderer sprite;
+
+    [Header("UI")]
+    public TextMeshProUGUI pineappleText;
+    public TextMeshProUGUI playerText;
+
 
     // Variável Vector2 declara variável x e y
     private Vector2 direction;
@@ -135,6 +145,12 @@ public class Player : MonoBehaviour
 
         life--;
         recovery = false;
+    }
+
+    public void IncreaseScore()
+    {
+        pineapple++;
+        pineappleText.text = pineapple.ToString();
     }
 
     // Lido toda vez que o objeto Player encontrar em outro objeto na cena - nesse caso quando encostar no chão

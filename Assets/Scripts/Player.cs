@@ -39,6 +39,9 @@ public class Player : MonoBehaviour
         //Para sempre começar com a vida máxima
         lifeText.text = life.ToString();
         Time.timeScale = 1;
+
+        //Para ao passar de cena não destruir o objeto
+        DontDestroyerOnLoad(gameObject);
     }
 
     // Update is called once per frame

@@ -10,7 +10,7 @@ public class FinalPoint : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             //Aqui chama método que passa de fase
-            //SceneManager.LoadScene("Scene2");
+            SceneManager.LoadScene("Scene2");
         }
     }
 }

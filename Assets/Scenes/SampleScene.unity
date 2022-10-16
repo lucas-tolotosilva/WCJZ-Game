@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5.5
-  jumpForce: 15
+  jumpForce: 12
   life: 5
   pineapple: 0
   rig: {fileID: 35417356}
@@ -6338,6 +6338,7 @@ GameObject:
   - component: {fileID: 1631981895}
   - component: {fileID: 1631981894}
   - component: {fileID: 1631981893}
+  - component: {fileID: 1631981896}
   m_Layer: 0
   m_Name: End point
   m_TagString: Untagged
@@ -6438,6 +6439,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1631981896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631981892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e84040a56e5a434d8e53ef328d91c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1632751040
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using TMPro; //Para acessar os Text 
+using UnityEngine.SceneManagement; //Para add a função de restart
 
 public class Player : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
     {
         //Para sempre começar com a vida máxima
         lifeText.text = life.ToString();
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -113,6 +115,7 @@ public class Player : MonoBehaviour
             if (isGrounded)
             {
                 anim.SetInteger("transition", 1);
+                Time.timeScale = 1;
             }
             
         }
@@ -160,6 +163,11 @@ public class Player : MonoBehaviour
     {
         pineapple++;
         pineappleText.text = pineapple.ToString();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // Lido toda vez que o objeto Player encontrar em outro objeto na cena - nesse caso quando encostar no chão

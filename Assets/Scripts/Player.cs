@@ -21,7 +21,8 @@ public class Player : MonoBehaviour
 
     [Header("UI")]
     public TextMeshProUGUI pineappleText;
-    public TextMeshProUGUI playerText;
+    public TextMeshProUGUI lifeText;
+    public GameObject gameOver;
 
 
     // Variável Vector2 declara variável x e y
@@ -34,7 +35,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Para sempre começar com a vida máxima
+        lifeText.text = life.ToString();
     }
 
     // Update is called once per frame
@@ -75,7 +77,10 @@ public class Player : MonoBehaviour
     // Die
     void Death()
     {
-
+        if(life <= 0)
+        {
+            gameOver.SetActive(true);
+        }
     }
 
     //Animations
@@ -130,6 +135,11 @@ public class Player : MonoBehaviour
         //Faz piscar a cor do Player
 
         recovery = true;
+
+        life--;
+        lifeText.text = life.ToString();
+
+        Death();
         //manipular o alpha da cor do SpriteRenderer do Objeto player
         sprite.color = new Color(1, 1, 1, 0);
         //Manipular tempo
@@ -143,7 +153,6 @@ public class Player : MonoBehaviour
 
         sprite.color = new Color(1, 1, 1, 1);
 
-        life--;
         recovery = false;
     }
 

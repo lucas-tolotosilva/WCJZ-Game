@@ -33,6 +33,9 @@ public class Player : MonoBehaviour
     //Para controlar se ele tomou dano, não ficar tomando dano logo em seguida
     private bool recovery;
 
+    public static Player player;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +44,7 @@ public class Player : MonoBehaviour
         Time.timeScale = 1;
 
         //Para ao passar de cena não destruir o objeto
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -171,6 +174,29 @@ public class Player : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void Awake()
+    {
+        if (player == null)
+        {
+            player = this;
+            DontDestroyOnLoad(this.gameObject); //mantém o objetivo ao passar de cena
+        }
+        else if (player != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    //Resetar as configurações do Player
+    public void ResetGamePresets()
+    {
+        sprite.color = new Color(1, 1, 1, 1);
+        gameOver.setActive(false);
+        life = 5;
+        lifeText.text = life.ToString();
+        Time.timeScale = 1;
     }
 
     // Lido toda vez que o objeto Player encontrar em outro objeto na cena - nesse caso quando encostar no chão

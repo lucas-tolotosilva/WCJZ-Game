@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public Rigidbody2D rig;
     //Acesso ao Animator
     public Animator anim;
+    //Acesso ao SpriteRenderer
+    public SpriteRenderer sprite;
 
     // Variável Vector2 declara variável x e y
     private Vector2 direction;
@@ -97,6 +99,32 @@ public class Player : MonoBehaviour
             }
             
         }
+    }
+
+    public void Hit()
+    {
+        StartCoroutine(Flick());
+        life--;
+    }
+
+    // Coroutine
+    // Setar uma ação em um determinado tempo- por exemplo, pintar de verde depois de um segundo
+    IEnumerator Flick()
+    {
+        //Faz piscar a cor do Player
+
+        //manipular o alpha da cor do SpriteRenderer do Objeto player
+        sprite.color = new Color(1, 1, 1, 0);
+        //Manipular tempo
+        yield return new WaitForSeconds(0.2f);
+
+        sprite.color = new Color(1, 1, 1, 1);
+        yield return new WaitForSeconds(0.2f);
+
+        sprite.color = new Color(1, 1, 1, 0);
+        yield return new WaitForSeconds(0.2f);
+
+        sprite.color = new Color(1, 1, 1, 1);
     }
 
     // Lido toda vez que o objeto Player encontrar em outro objeto na cena - nesse caso quando encostar no chão

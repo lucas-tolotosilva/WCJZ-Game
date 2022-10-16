@@ -17,7 +17,9 @@ public class Player : MonoBehaviour
     // Variável Vector2 declara variável x e y
     private Vector2 direction;
     //verificar se está no chão ou não
-    public bool isGrounded;
+    private bool isGrounded;
+    //Para controlar se ele tomou dano, não ficar tomando dano logo em seguida
+    private bool recovery;
 
     // Start is called before the first frame update
     void Start()
@@ -103,8 +105,12 @@ public class Player : MonoBehaviour
 
     public void Hit()
     {
-        StartCoroutine(Flick());
-        life--;
+        
+        if(recovery == false)
+        {
+            StartCoroutine(Flick());
+        }
+       
     }
 
     // Coroutine
@@ -113,6 +119,7 @@ public class Player : MonoBehaviour
     {
         //Faz piscar a cor do Player
 
+        recovery = true;
         //manipular o alpha da cor do SpriteRenderer do Objeto player
         sprite.color = new Color(1, 1, 1, 0);
         //Manipular tempo
@@ -125,6 +132,9 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         sprite.color = new Color(1, 1, 1, 1);
+
+        life--;
+        recovery = false;
     }
 
     // Lido toda vez que o objeto Player encontrar em outro objeto na cena - nesse caso quando encostar no chão

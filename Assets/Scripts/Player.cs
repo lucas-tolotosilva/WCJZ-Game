@@ -7,7 +7,10 @@ public class Player : MonoBehaviour
     public float speed;
     public float jumpForce;
     public int life;
+    //Acesso ao RigidBody2d
     public Rigidbody2D rig;
+    //Acesso ao Animator
+    public Animator anim;
 
     // Variável Vector2 declara variável x e y
     private Vector2 direction;
@@ -24,12 +27,16 @@ public class Player : MonoBehaviour
     void Update()
     {
         direction = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
+        Jump();
+
+        PlayAnim();
     }
 
     //usado para a física 
     void FixedUpdate() 
     {
-        Movement();        
+        Movement();
+      
     }
 
     // Walk
@@ -43,6 +50,7 @@ public class Player : MonoBehaviour
     {   
         if(Input.GetButtonDown("Jump") && isGrounded == true)
         {
+            anim.SetInteger("transition", 2);
             //Próprio do Rigidbody2D - Adiciona Força
             rig.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             isGrounded = false;
@@ -54,6 +62,41 @@ public class Player : MonoBehaviour
     void Death()
     {
 
+    }
+
+    //Animations
+    void PlayAnim()
+    {
+        if(direction.x > 0)
+        {
+            // Para limitar quando o player executar a função de pular não executar essas animações 
+            if (isGrounded)
+            {
+                //acessa a transição feita na unity - nesse caso a 1 que é o RUN
+                //SetInteger pois o tipo do animator foi INT
+                anim.SetInteger("transition", 1);
+            }
+            // Transform não precisa ser referenciado como Rigidbody, pois já vem setado
+            transform.eulerAngles = new Vector3(0, 0);
+        }
+
+        if(direction.x < 0)
+        {
+            if (isGrounded)
+            {
+                anim.SetInteger("transition", 1);
+            }
+            transform.eulerAngles = new Vector2(0, 180);
+        }
+
+        if (direction.x == 0)
+        {
+            if (isGrounded)
+            {
+                anim.SetInteger("transition", 1);
+            }
+            
+        }
     }
 
     // Lido toda vez que o objeto Player encontrar em outro objeto na cena - nesse caso quando encostar no chão

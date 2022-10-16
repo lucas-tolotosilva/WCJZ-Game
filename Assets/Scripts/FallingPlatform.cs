@@ -8,7 +8,7 @@ public class FallingPlatform : MonoBehaviour
     public float fallingTime;
 
     public BoxCollider2D boxCollider;
-    public TargetJoin joint;
+    public TargetJoint2D joint;
 
     void Falling()
     {
@@ -23,6 +23,8 @@ public class FallingPlatform : MonoBehaviour
         {
             //Chamar um método depois de um determinado tempo - invoke
             Invoke("Falling", fallingTime);
+
+            Destroy(gameObject, 2);
         }
     }
 }

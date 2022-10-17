@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
     public void ResetGamePresets()
     {
         sprite.color = new Color(1, 1, 1, 1);
-        gameOver.setActive(false);
+        gameOver.SetActive(false);
         life = 5;
         lifeText.text = life.ToString();
         Time.timeScale = 1;

@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         Time.timeScale = 1;
 
         //Para ao passar de cena não destruir o objeto
-        DontDestroyOnLoad(gameObject);
+    //    DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame

@@ -10,3 +10,7 @@ First 2D Game in Unity Platform
   <li>C#</li>
   <li>Unity</li>
 </ul>
+
+<br>
+<h1>🖥️ Project </h1>
+Mario-style platform game, used for study
